@@ -4,8 +4,6 @@ from langchain import PromptTemplate, LLMChain, HuggingFaceHub
 st.title('🦜🔗 Easy Nutrition')
 
 HUGGINGFACEHUB_API_TOKEN = st.sidebar.text_input('HuggingFace API Token')
-## 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
-## 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
 
 def generate_response(input_text):
   template = """
@@ -37,4 +35,3 @@ with st.form('my_form'):
     st.warning('Please enter your HuggingFace API key!', icon='⚠')
   if submitted and HUGGINGFACEHUB_API_TOKEN.startswith('hf-'):
     generate_response(text)
-    
