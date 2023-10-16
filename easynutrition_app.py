@@ -3,6 +3,7 @@ from langchain import PromptTemplate, LLMChain, HuggingFaceHub
 import os
 
 st.title('🍽️🥗🧘🏻‍♀️ Easy Nutrition - Proof of Concept')
+st.set_page_config(initial_sidebar_state='collapsed')
 
 st.markdown('''Easy Nutrition: Decode Your Food Labels! Are you ready to take control of your health? Take the first step to understanding what\'s on your plate.''')
 st.divider()
