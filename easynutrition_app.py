@@ -57,7 +57,7 @@ with col1:
     submitted = st.form_submit_button('Submit')
     
 
-with st.spinner('Wait for it...'):
-  time.sleep(5)
 if submitted:
+  with st.spinner('Wait for it...'):
+    time.sleep(5)
   generate_response(text)
