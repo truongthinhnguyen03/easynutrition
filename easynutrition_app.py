@@ -36,14 +36,20 @@ def generate_response(input_text):
 
   st.info(llm_chain.run(input_text))
 
-examples = {
-    'Example 1': 'Sugar, Invert sugar, corn syrup, modified corn starch, citric acid, tartaric acid, natural and artificial flavour, titanium dioxide, red 40, yellow 5, and blue 1',
-    'Example 2': 'Enriched unbleached flour (wheat flour, malted barley flour, ascorbic acid [dough conditioner], niacin, reduced iron, thiamin mononitrate, ribflavin, folic acid), sugar, degermed yellow cornmeal, salt, leavening (baking soda, sodium acid pyrophosphate), soybean oil, honey powder, natural flavor'
-  }
-select_example = st.selectbox("Select an example", list(examples.keys()))
+col1, col2 = st.columns([1, 3])
+
+with col1:
+  examples = {
+      'Example 1': 'Sugar, Invert sugar, corn syrup, modified corn starch, citric acid, tartaric acid, natural and artificial flavour, titanium dioxide, red 40, yellow 5, and blue 1',
+      'Example 2': 'Enriched unbleached flour (wheat flour, malted barley flour, ascorbic acid [dough conditioner], niacin, reduced iron, thiamin mononitrate, ribflavin, folic acid), sugar, degermed yellow cornmeal, salt, leavening (baking soda, sodium acid pyrophosphate), soybean oil, honey powder, natural flavor'
+    }
+  select_example = st.selectbox("Select an example", list(examples.keys()), index=None, placeholder="Select an example")
 
 with st.form('my_form'):
-  text = st.text_area('Enter nutrition list:', examples[select_example], height=150)
+  if select_example==None:
+    text = st.text_area('Enter nutrition list:', height=150)
+  else:
+    text = st.text_area('Enter nutrition list:', examples[select_example], height=150)
   submitted = st.form_submit_button('Submit')
   if not HUGGINGFACEHUB_API_TOKEN.startswith('hf_'):
     st.warning('Please enter your HuggingFace API key!', icon='⚠')
